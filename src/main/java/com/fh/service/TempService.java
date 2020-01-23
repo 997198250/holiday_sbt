@@ -17,4 +17,8 @@ public interface TempService {
     void addTempList(Temp temp);
 
     DataUtil<Temp> queryTempList(SearchUtil searchUtil);
+
+    void deleteEmp(Integer id);
+
+    List<Temp> queryTempAllList();
 }

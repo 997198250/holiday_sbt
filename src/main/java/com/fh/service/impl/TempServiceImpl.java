@@ -47,4 +47,14 @@ public class TempServiceImpl implements TempService {
         dataUtil.setRecordsTotal((int)count);
         return dataUtil;
     }
+
+    @Override
+    public void deleteEmp(Integer id) {
+        tempDao.deleteById(id);
+    }
+
+    @Override
+    public List<Temp> queryTempAllList() {
+        return tempDao.selectList(null);
+    }
 }

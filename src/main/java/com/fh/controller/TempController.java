@@ -4,6 +4,7 @@ import com.fh.entity.po.Temp;
 import com.fh.entity.vo.DataUtil;
 import com.fh.entity.vo.SearchUtil;
 import com.fh.service.TempService;
+import com.fh.util.ExcelUtil;
 import com.fh.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,5 +65,19 @@ public class TempController {
     public ResponseData queryTempList(SearchUtil searchUtil){
         DataUtil<Temp> dataUtil=tempService.queryTempList(searchUtil);
         return ResponseData.success(dataUtil);
+    }
+
+    //deleteEmp\
+    @RequestMapping("deleteEmp")
+    @ResponseBody
+    public ResponseData deleteEmp(Integer id){
+        tempService.deleteEmp(id);
+        return ResponseData.success(null);
+    }
+
+    @RequestMapping("exportExecl")
+    public void exportExecl(HttpServletResponse response){
+        List<Temp> tempList=tempService.queryTempAllList();
+        ExcelUtil.exceleUtil(tempList,response);
     }
 }

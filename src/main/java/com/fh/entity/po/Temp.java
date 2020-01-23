@@ -4,21 +4,27 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fh.common.ExcelFild;
+import com.fh.common.ExcleHeard;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @TableName("t_emp")
+@ExcleHeard(title = "员工信息")
 public class Temp {
 
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;// 员工id
     @TableField("name")
+    @ExcelFild(name = "名称")
     private String name;
     @TableField("jobid")
     private Integer jobid;// 岗位id
     @TableField("salary")
+    @ExcelFild(name = "工资")
     private double salary;// 工资
     @TableField("entrytime")
+    @ExcelFild(name = "入职时间")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entrytime;// 入职时间
     @TableField("leaderid")
